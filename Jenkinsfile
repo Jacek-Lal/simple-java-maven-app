@@ -26,6 +26,11 @@ pipeline {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
+            post {
+                always {
+                    echo 'Delivered'
+                }
+            }
         }
     }
 }
