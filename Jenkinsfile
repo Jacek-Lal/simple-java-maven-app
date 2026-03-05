@@ -13,11 +13,6 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
-            post {
-                always {
-                    echo 'Built'
-                }
-            }
         }
         stage('Test') {
             steps {
@@ -26,20 +21,21 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                    echo 'Tested'
-
                 }
             }
         }
-        stage('Deliver') {
+        stage('Build Dcoker Image') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                sh './jenkins/scripts/build_image.sh'
             }
-            post {
-                always {
-                    echo 'Delivered'
-                }
-            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
