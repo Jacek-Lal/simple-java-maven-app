@@ -24,9 +24,9 @@ pipeline {
                 }
             }
         }
-        stage('Build Docker Image') {
+        stage('Deliver') {
             steps {
-                sh './jenkins/scripts/build_image.sh'
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
