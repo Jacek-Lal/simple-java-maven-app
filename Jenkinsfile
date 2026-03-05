@@ -37,11 +37,18 @@ pipeline {
         }
     }
     post {
-        always {
-            cleanWs()
+        success {
+            mail to: 'laljacek@gmail.com',
+            subject: "Pipeline succeeded: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Build ${env.BUILD_NUMBER} delivered successfully"
         }
         failure {
-            echo 'Pipeline failed'
+            mail to: 'laljacek@gmail.com',
+            subject: "Pipeline succeeded: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Check console output: ${env.BUILD_URL}"
+        }
+        always {
+            cleanWs()
         }
     }
 }
