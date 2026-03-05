@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'maven-agent'
+    }
     options {
         skipStagesAfterUnstable()
     }
