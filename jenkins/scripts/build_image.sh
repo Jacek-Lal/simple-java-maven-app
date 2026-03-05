@@ -11,8 +11,8 @@ VERSION=`mvn -q -DforceStdout help:evaluate -Dexpression=project.version`
 set +x
 
 set -x
-COMPANY=`mvn -q -DforceStdout help:evalute -Dexpression=project.groupId
+COMPANY=`mvn -q -DforceStdout help:evaluate -Dexpression=project.groupId`
 set +x
 
 set -x
-docker build -t ${COMPANY}/${NAME}:${VERSION}
+docker build -t ${COMPANY}/${NAME}:${VERSION} -t ${COMPANY}/${NAME}:latest .
