@@ -13,6 +13,11 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
+            post {
+                always {
+                    echo 'Built'
+                }
+            }
         }
         stage('Test') {
             steps {
